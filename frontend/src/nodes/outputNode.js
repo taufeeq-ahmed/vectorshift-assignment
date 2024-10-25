@@ -1,11 +1,14 @@
 // outputNode.js
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { useState } from "react";
+import { Handle, Position } from "reactflow";
+import BaseNode from "./baseNode";
 
 export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
+  const [currName, setCurrName] = useState(
+    data?.outputName || id.replace("customOutput-", "output_")
+  );
+  const [outputType, setOutputType] = useState(data.outputType || "Text");
 
   const handleNameChange = (e) => {
     setCurrName(e.target.value);
@@ -16,32 +19,46 @@ export const OutputNode = ({ id, data }) => {
   };
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
+    <BaseNode nodeType="Output">
       <Handle
         type="target"
         position={Position.Left}
         id={`${id}-value`}
+        style={{
+          background: "#cdcffc",
+          width: "16px",
+          height: "16px",
+          border: "3px solid #6366f1",
+          left: "-8px",
+        }}
       />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
+
+      <div className="flex flex-col gap-2">
+        <div className="name-input flex flex-col gap-2 ">
+          <label className="text-regular" htmlFor="name">
+            Name:
+          </label>
+          <input
+            type="text"
+            value={currName}
+            onChange={handleNameChange}
+            id="name"
+            className="text-black focus:outline-none"
           />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
+        </div>
+        <div className="type-input flex flex-col gap-2">
+          <label htmlFor="type">Type:</label>
+          <select
+            value={outputType}
+            onChange={handleTypeChange}
+            id="type"
+            className="text-black focus:outline-none"
+          >
             <option value="Text">Text</option>
-            <option value="File">Image</option>
+            <option value="File">File</option>
           </select>
-        </label>
+        </div>
       </div>
-    </div>
+    </BaseNode>
   );
-}
+};
