@@ -20,6 +20,7 @@ export const TextNode = ({ id, data }) => {
           value={currText}
           onChange={handleTextChange}
           id="text"
+          className="text-black focus:outline-none"
         />
       </div>
       <Handle
