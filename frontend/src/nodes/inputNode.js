@@ -20,7 +20,7 @@ export const InputNode = ({ id, data }) => {
 
   return (
     <BaseNode nodeType={"Input"}>
-      <div>
+      <div className="border-red-500 border-2">
         <label>
           Name:
           <input type="text" value={currName} onChange={handleNameChange} />
