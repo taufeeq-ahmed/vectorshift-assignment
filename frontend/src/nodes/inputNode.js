@@ -1,11 +1,14 @@
 // inputNode.js
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+import { useState } from "react";
+import { Handle, Position } from "reactflow";
+import BaseNode from "./baseNode";
 
 export const InputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.inputName || id.replace('customInput-', 'input_'));
-  const [inputType, setInputType] = useState(data.inputType || 'Text');
+  const [currName, setCurrName] = useState(
+    data?.inputName || id.replace("customInput-", "input_")
+  );
+  const [inputType, setInputType] = useState(data.inputType || "Text");
 
   const handleNameChange = (e) => {
     setCurrName(e.target.value);
@@ -16,18 +19,11 @@ export const InputNode = ({ id, data }) => {
   };
 
   return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Input</span>
-      </div>
+    <BaseNode nodeType={"Input"}>
       <div>
         <label>
           Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
+          <input type="text" value={currName} onChange={handleNameChange} />
         </label>
         <label>
           Type:
@@ -37,11 +33,7 @@ export const InputNode = ({ id, data }) => {
           </select>
         </label>
       </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-value`}
-      />
-    </div>
+      <Handle type="source" position={Position.Right} id={`${id}-value`} />
+    </BaseNode>
   );
-}
+};
