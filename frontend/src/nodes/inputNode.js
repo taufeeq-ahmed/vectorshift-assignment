@@ -20,7 +20,7 @@ export const InputNode = ({ id, data }) => {
 
   return (
     <BaseNode nodeType={"Input"}>
-      <div className="border-red-500 border-2">
+      <div>
         <label>
           Name:
           <input type="text" value={currName} onChange={handleNameChange} />
@@ -33,7 +33,18 @@ export const InputNode = ({ id, data }) => {
           </select>
         </label>
       </div>
-      <Handle type="source" position={Position.Right} id={`${id}-value`} />
+      <Handle
+        type="source"
+        position={Position.Right}
+        id={`${id}-value`}
+        style={{
+          background: "#cdcffc",
+          width: "16px",
+          height: "16px",
+          border: "3px solid #6366f1",
+          right: "-8px",
+        }}
+      />
     </BaseNode>
   );
 };
