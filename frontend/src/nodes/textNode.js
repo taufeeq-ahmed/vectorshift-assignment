@@ -19,6 +19,7 @@ export const TextNode = ({ id, data }) => {
     setHandles(variables);
   };
 
+  // Run initially to parse variables if default text contains them
   useEffect(() => {
     extractVariables(currText);
   }, []);
@@ -39,8 +40,8 @@ export const TextNode = ({ id, data }) => {
         const yPos = (index + 1) / (handles.length + 1);
         return (
           <Handle
-            key={`${id}-${variable}-${index}`}
-            type="source"
+            key={variable}
+            type="target"
             position={Position.Left}
             id={`${id}-${variable}`}
             style={{
