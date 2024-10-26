@@ -1,15 +1,26 @@
-// submit.js
-
-import { useStore } from "reactflow";
+import { useStore } from "./store";
 import { selector } from "./ui";
 import { shallow } from "zustand/shallow";
+import axios from "axios";
 
 export const SubmitButton = () => {
-  const nodes = useStore((state) => state.nodes);
+  const { nodes, edges } = useStore(selector, shallow);
 
   const handleSubmit = async () => {
+    const graphData = {
+      nodes,
+      edges,
+    };
+
     try {
-    } catch (errror) {}
+      const { data } = await axios.post(
+        "http://localhost:8000/check-dag",
+        graphData
+      );
+      console.log("RESPONSE IS : ", data);
+    } catch (errror) {
+      console.log("ERROR IN BACKEND :", errror);
+    }
   };
 
   return (

@@ -5,7 +5,7 @@
 import { useState, useRef, useCallback } from "react";
 import ReactFlow, { Controls, Background, MiniMap } from "reactflow";
 import { useStore } from "./store";
-import { shallow } from "zustand/shallow";
+
 import { InputNode } from "./nodes/inputNode";
 import { LLMNode } from "./nodes/llmNode";
 import { OutputNode } from "./nodes/outputNode";
@@ -35,6 +35,7 @@ export const selector = (state) => ({
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
   const {
     nodes,
     edges,
@@ -43,10 +44,11 @@ export const PipelineUI = () => {
     onNodesChange,
     onEdgesChange,
     onConnect,
-  } = useStore(selector, shallow);
+  } = useStore(selector);
 
-  console.log(edges, edges);
+  console.log("edges", edges);
   console.log("nodes", nodes);
+
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
