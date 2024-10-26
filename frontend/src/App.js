@@ -1,11 +1,12 @@
 import { PipelineToolbar } from "./toolbar";
 import { PipelineUI } from "./ui";
-import { SubmitButton } from "./submit";
 import { ReactFlowProvider } from "reactflow";
+import { Toaster } from "sonner";
 
 function App() {
   return (
     <div>
+      <Toaster position="top-center" />
       <ReactFlowProvider>
         <PipelineToolbar />
         <PipelineUI />
