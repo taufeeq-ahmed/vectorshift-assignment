@@ -28,7 +28,7 @@ export const DraggableNode = ({ type, label }) => {
     <div
       className={twMerge(
         type,
-        "p-2 border-[1px] flex flex-col gap-1 justify-center items-center w-[62px] h-[62px] rounded-lg"
+        "p-2 border-[1px] flex flex-col gap-1 justify-center items-center w-[62px] h-[62px] rounded-lg hover:bg-[#efefef]"
       )}
       onDragStart={(event) => onDragStart(event, type)}
       onDragEnd={(event) => (event.target.style.cursor = "grab")}
@@ -37,7 +37,7 @@ export const DraggableNode = ({ type, label }) => {
       }}
       draggable
     >
-      <span className="text-[#6e6c8b] text-[10px]">
+      <span className="text-[#6e6c8b] text-[10px] ">
         <Icon className="w-6 h-6" fill="#6e6c8b" />
         {label}
       </span>

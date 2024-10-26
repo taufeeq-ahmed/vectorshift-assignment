@@ -2,6 +2,7 @@ import { useStore } from "./store";
 import { selector } from "./ui";
 import { shallow } from "zustand/shallow";
 import axios from "axios";
+import PlayIcon from "./icons/PlayIcon";
 
 export const SubmitButton = () => {
   const { nodes, edges } = useStore(selector, shallow);
@@ -24,16 +25,13 @@ export const SubmitButton = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
+    <button
+      type="submit"
+      onClick={handleSubmit}
+      className="border-[1px] flex h-fit p-2 rounded-lg justify-center items-center hover:bg-[#efefef]"
     >
-      <button type="submit" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+      <PlayIcon className="w-5 h-5" />
+      Submit
+    </button>
   );
 };

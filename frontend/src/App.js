@@ -9,7 +9,6 @@ function App() {
       <ReactFlowProvider>
         <PipelineToolbar />
         <PipelineUI />
-        <SubmitButton />
       </ReactFlowProvider>
     </div>
   );
