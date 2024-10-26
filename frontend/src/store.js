@@ -31,22 +31,26 @@ export const useStore = create((set, get) => ({
     });
   },
   onEdgesChange: (changes) => {
-    set({
-      edges: applyEdgeChanges(changes, get().edges),
-    });
+    const updatedEdges = applyEdgeChanges(changes, get().edges);
+    set({ edges: [...updatedEdges] });
   },
   onConnect: (connection) => {
-    console.log(connection);
     set({
-      edges: addEdge(
-        {
-          ...connection,
-          type: "smoothstep",
-          animated: true,
-          markerEnd: { type: MarkerType.Arrow, height: "20px", width: "20px" },
-        },
-        get().edges
-      ),
+      edges: [
+        ...addEdge(
+          {
+            ...connection,
+            type: "smoothstep",
+            animated: true,
+            markerEnd: {
+              type: MarkerType.Arrow,
+              height: "20px",
+              width: "20px",
+            },
+          },
+          get().edges
+        ),
+      ],
     });
   },
   updateNodeField: (nodeId, fieldName, fieldValue) => {

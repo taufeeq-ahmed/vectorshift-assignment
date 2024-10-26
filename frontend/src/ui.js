@@ -45,6 +45,7 @@ export const PipelineUI = () => {
     onConnect,
   } = useStore(selector, shallow);
 
+  console.log(edges);
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
@@ -54,6 +55,8 @@ export const PipelineUI = () => {
     (event) => {
       event.preventDefault();
 
+      if (!reactFlowInstance) return;
+
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       if (event?.dataTransfer?.getData("application/reactflow")) {
         const appData = JSON.parse(
@@ -61,10 +64,7 @@ export const PipelineUI = () => {
         );
         const type = appData?.nodeType;
 
-        // check if the dropped element is valid
-        if (typeof type === "undefined" || !type) {
-          return;
-        }
+        if (!type) return;
 
         const position = reactFlowInstance.project({
           x: event.clientX - reactFlowBounds.left,
@@ -82,8 +82,11 @@ export const PipelineUI = () => {
         addNode(newNode);
       }
     },
-    [reactFlowInstance]
+    [reactFlowInstance, getNodeID, addNode]
   );
+
+  const onNodesChangeHandler = useCallback(onNodesChange, [onNodesChange]);
+  const onEdgesChangeHandler = useCallback(onEdgesChange, [onEdgesChange]);
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
@@ -96,8 +99,8 @@ export const PipelineUI = () => {
         <ReactFlow
           nodes={nodes}
           edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
+          onNodesChange={onNodesChangeHandler}
+          onEdgesChange={onEdgesChangeHandler}
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
@@ -106,10 +109,10 @@ export const PipelineUI = () => {
           proOptions={proOptions}
           snapGrid={[gridSize, gridSize]}
           connectionLineType="smoothstep"
+          key={edges.length}
         >
           <Background color="#aaa" gap={gridSize} />
           <Controls />
-          {/* <MiniMap /> */}
         </ReactFlow>
       </div>
     </>
