@@ -1,10 +1,28 @@
 // submit.js
 
-export const SubmitButton = () => {
+import { useStore } from "reactflow";
+import { selector } from "./ui";
+import { shallow } from "zustand/shallow";
 
-    return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <button type="submit">Submit</button>
-        </div>
-    );
-}
+export const SubmitButton = () => {
+  const nodes = useStore((state) => state.nodes);
+
+  const handleSubmit = async () => {
+    try {
+    } catch (errror) {}
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
+    </div>
+  );
+};
