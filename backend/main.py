@@ -69,4 +69,8 @@ async def hello():
 @app.post("/check-dag")
 async def check_dag(graph_data: GraphData):
     is_dag = check_is_dag(graph_data.nodes, graph_data.edges)
-    return {"is_dag": is_dag}
+    return {
+        "is_dag": is_dag,
+        "num_nodes": len(graph_data.nodes), 
+        "num_edges": len(graph_data.edges)
+    }
