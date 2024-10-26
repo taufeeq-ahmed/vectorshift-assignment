@@ -22,7 +22,7 @@ const nodeTypes = {
   text: TextNode,
 };
 
-const selector = (state) => ({
+export const selector = (state) => ({
   nodes: state.nodes,
   edges: state.edges,
   getNodeID: state.getNodeID,
@@ -45,7 +45,8 @@ export const PipelineUI = () => {
     onConnect,
   } = useStore(selector, shallow);
 
-  console.log(edges);
+  console.log(edges, edges);
+  console.log("nodes", nodes);
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
