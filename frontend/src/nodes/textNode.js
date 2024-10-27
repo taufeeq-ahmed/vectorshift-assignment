@@ -64,16 +64,7 @@ export const TextNode = ({ id, data }) => {
                 type="target"
                 position="left"
                 id={`${id}-${variable}-${index}`}
-                style={{
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  left: "-6px",
-                  position: "absolute",
-                }}
               />
-              <span style={{ marginLeft: "20px", fontSize: "12px" }}>
-                {variable}
-              </span>
             </div>
           );
         })}
