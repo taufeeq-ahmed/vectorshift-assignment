@@ -28,7 +28,7 @@ export const TextNode = ({ id, data }) => {
   }, [currText]);
 
   return (
-    <BaseNode nodeType={"Text"}>
+    <BaseNode nodeType={"Text"} className="relative">
       <Input
         type="text"
         value={currText}
@@ -36,36 +36,22 @@ export const TextNode = ({ id, data }) => {
         id="text"
         label={"Text: "}
       />
+
       <div
-        className="relative"
         style={{
-          minHeight: `${handles.length * 50}px`,
-          marginTop: "20px",
-          position: "relative",
+          minHeight: `${handles.length * 5}px`,
         }}
       >
         {handles.map((variable, index) => {
-          const yPosition = 25 + index * 50;
+          const yPosition = (index + 1) / (handles.length + 1);
 
           return (
-            <div
-              key={`${id}-${variable}`}
-              style={{
-                position: "absolute",
-                left: "0px",
-                top: `${yPosition}px`,
-                height: "20px",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <NodeHandle
-                type="target"
-                position="left"
-                id={`${id}-${variable}-${index}`}
-              />
-            </div>
+            <NodeHandle
+              type="target"
+              position="left"
+              id={`${id}-${variable}-${index}`}
+              customStyles={{ top: `calc(${yPosition * 100}%)` }}
+            />
           );
         })}
       </div>
