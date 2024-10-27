@@ -45,8 +45,7 @@ export const TextNode = ({ id, data }) => {
         }}
       >
         {handles.map((variable, index) => {
-          // Calculate vertical position for each handle
-          const yPosition = 25 + index * 50; // 50px spacing between handles, 25px initial offset
+          const yPosition = 25 + index * 50;
 
           return (
             <div
@@ -64,21 +63,12 @@ export const TextNode = ({ id, data }) => {
               <NodeHandle
                 type="target"
                 position="left"
-                // Use both the variable name and index to ensure uniqueness
                 id={`${id}-${variable}-${index}`}
                 style={{
                   top: "50%",
                   transform: "translateY(-50%)",
                   left: "-6px",
                   position: "absolute",
-                }}
-                customStyles={{
-                  width: "12px",
-                  height: "12px",
-                  backgroundColor: index === 0 ? "blue" : "red",
-                  border: "2px solid #fff",
-                  borderRadius: "50%",
-                  zIndex: 5,
                 }}
               />
               <span style={{ marginLeft: "20px", fontSize: "12px" }}>
