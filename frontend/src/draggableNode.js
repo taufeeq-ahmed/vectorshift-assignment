@@ -23,7 +23,7 @@ export const DraggableNode = ({ type, label }) => {
   };
 
   const Icon = iconMap[type];
-  console.log(<Icon />, "ICN");
+
   return (
     <div
       className={twMerge(

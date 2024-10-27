@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import BaseNode from "./baseNode";
 import Input from "./../components/Input";
 import NodeHandle from "../components/NodeHandle";
+import { useStore } from "./../store";
 
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || "{{input}}");
-  const [handles, setHandles] = useState([]);
+  const [handles, setHandles] = useState(["input"]);
+  const { updateNodeField } = useStore((state) => state);
 
   const handleTextChange = (e) => {
-    setCurrText(e.target.value);
-    extractVariables(e.target.value);
+    const newText = e.target.value;
+    setCurrText(newText);
+    updateNodeField(id, "text", newText);
   };
 
   const extractVariables = (text) => {
@@ -22,7 +25,7 @@ export const TextNode = ({ id, data }) => {
 
   useEffect(() => {
     extractVariables(currText);
-  }, []);
+  }, [currText]);
 
   return (
     <BaseNode nodeType={"Text"}>
@@ -33,16 +36,20 @@ export const TextNode = ({ id, data }) => {
         id="text"
         label={"Text: "}
       />
-
       {handles.map((variable, index) => {
         const yPos = (index + 1) / (handles.length + 1);
+        const uniqueHandleId = `${id}-${index}`;
+
         return (
           <NodeHandle
             key={variable}
             type="target"
             position={"left"}
-            id={`${id}-${variable}`}
-            customStyles={{ top: `${yPos * 100}%` }}
+            id={uniqueHandleId}
+            customStyles={{
+              top: `${yPos * 100}%`,
+              backgroundColor: index === 0 ? "blue" : "red", // Temporary debug color
+            }}
           />
         );
       })}

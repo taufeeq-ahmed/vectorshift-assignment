@@ -11,7 +11,11 @@ function Select({ value, onChange, id, label, options }) {
         className="text-black focus:outline-none"
       >
         {options?.map(({ value, label }) => {
-          return <option value={value}>{label}</option>;
+          return (
+            <option value={value} key={value}>
+              {label}
+            </option>
+          );
         })}
       </select>
     </div>

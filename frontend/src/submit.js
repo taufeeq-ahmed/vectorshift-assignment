@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import ToastContent from "./components/ToastContent";
 
 export const SubmitButton = () => {
-  const { nodes, edges } = useStore(selector, shallow);
+  const { nodes, edges } = useStore(selector);
 
   const handleSubmit = async () => {
     const graphData = {
