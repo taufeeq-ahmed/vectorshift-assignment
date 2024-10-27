@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Handle, Position } from "reactflow";
 import BaseNode from "./baseNode";
+import Input from "../components/Input";
+import Select from "../components/Select";
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(
@@ -17,6 +19,11 @@ export const OutputNode = ({ id, data }) => {
   const handleTypeChange = (e) => {
     setOutputType(e.target.value);
   };
+
+  const fileTypeOptions = [
+    { value: "Text", label: "Text" },
+    { value: "File", label: "File" },
+  ];
 
   return (
     <BaseNode nodeType="Output">
@@ -34,30 +41,20 @@ export const OutputNode = ({ id, data }) => {
       />
 
       <div className="flex flex-col gap-2">
-        <div className="name-input flex flex-col gap-2 ">
-          <label className="text-regular" htmlFor="name">
-            Name:
-          </label>
-          <input
-            type="text"
-            value={currName}
-            onChange={handleNameChange}
-            id="name"
-            className="text-black focus:outline-none"
-          />
-        </div>
-        <div className="type-input flex flex-col gap-2">
-          <label htmlFor="type">Type:</label>
-          <select
-            value={outputType}
-            onChange={handleTypeChange}
-            id="type"
-            className="text-black focus:outline-none"
-          >
-            <option value="Text">Text</option>
-            <option value="File">File</option>
-          </select>
-        </div>
+        <Input
+          type="text"
+          value={currName}
+          onChange={handleNameChange}
+          id="name"
+          label={"Name: "}
+        />
+        <Select
+          options={fileTypeOptions}
+          value={outputType}
+          onChange={handleTypeChange}
+          id="type"
+          label={"Type: "}
+        />
       </div>
     </BaseNode>
   );
