@@ -36,23 +36,58 @@ export const TextNode = ({ id, data }) => {
         id="text"
         label={"Text: "}
       />
-      {handles.map((variable, index) => {
-        const yPos = (index + 1) / (handles.length + 1);
-        const uniqueHandleId = `${id}-${index}`;
+      <div
+        className="relative"
+        style={{
+          minHeight: `${handles.length * 50}px`,
+          marginTop: "20px",
+          position: "relative",
+        }}
+      >
+        {handles.map((variable, index) => {
+          // Calculate vertical position for each handle
+          const yPosition = 25 + index * 50; // 50px spacing between handles, 25px initial offset
 
-        return (
-          <NodeHandle
-            key={variable}
-            type="target"
-            position={"left"}
-            id={uniqueHandleId}
-            customStyles={{
-              top: `${yPos * 100}%`,
-              backgroundColor: index === 0 ? "blue" : "red", // Temporary debug color
-            }}
-          />
-        );
-      })}
+          return (
+            <div
+              key={`${id}-${variable}`}
+              style={{
+                position: "absolute",
+                left: "0px",
+                top: `${yPosition}px`,
+                height: "20px",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <NodeHandle
+                type="target"
+                position="left"
+                // Use both the variable name and index to ensure uniqueness
+                id={`${id}-${variable}-${index}`}
+                style={{
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  left: "-6px",
+                  position: "absolute",
+                }}
+                customStyles={{
+                  width: "12px",
+                  height: "12px",
+                  backgroundColor: index === 0 ? "blue" : "red",
+                  border: "2px solid #fff",
+                  borderRadius: "50%",
+                  zIndex: 5,
+                }}
+              />
+              <span style={{ marginLeft: "20px", fontSize: "12px" }}>
+                {variable}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </BaseNode>
   );
 };
