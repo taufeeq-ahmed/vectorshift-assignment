@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Handle, Position } from "reactflow";
 import BaseNode from "./baseNode";
+import Input from "./../components/Input";
+import NodeHandle from "../components/NodeHandle";
 
 export const TextNode = ({ id, data }) => {
   const [currText, setCurrText] = useState(data?.text || "{{input}}");
@@ -19,39 +20,29 @@ export const TextNode = ({ id, data }) => {
     setHandles(variables);
   };
 
-  // Run initially to parse variables if default text contains them
   useEffect(() => {
     extractVariables(currText);
   }, []);
 
   return (
     <BaseNode nodeType={"Text"}>
-      <div className="flex flex-col gap-2">
-        <label htmlFor="text">Text:</label>
-        <input
-          type="text"
-          value={currText}
-          onChange={handleTextChange}
-          id="text"
-          className="text-black focus:outline-none"
-        />
-      </div>
+      <Input
+        type="text"
+        value={currText}
+        onChange={handleTextChange}
+        id="text"
+        label={"Text: "}
+      />
+
       {handles.map((variable, index) => {
         const yPos = (index + 1) / (handles.length + 1);
         return (
-          <Handle
+          <NodeHandle
             key={variable}
             type="target"
-            position={Position.Left}
+            position={"left"}
             id={`${id}-${variable}`}
-            style={{
-              background: "#cdcffc",
-              width: "16px",
-              height: "16px",
-              border: "3px solid #6366f1",
-              left: "-8px",
-              top: `${yPos * 100}%`,
-            }}
+            customStyles={{ top: `${yPos * 100}%` }}
           />
         );
       })}
