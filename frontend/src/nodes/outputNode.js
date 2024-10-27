@@ -1,10 +1,9 @@
-// outputNode.js
-
 import { useState } from "react";
-import { Handle, Position } from "reactflow";
+
 import BaseNode from "./baseNode";
 import Input from "../components/Input";
 import Select from "../components/Select";
+import NodeHandle from "../components/NodeHandle";
 
 export const OutputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(
@@ -27,18 +26,7 @@ export const OutputNode = ({ id, data }) => {
 
   return (
     <BaseNode nodeType="Output">
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-        style={{
-          background: "#cdcffc",
-          width: "16px",
-          height: "16px",
-          border: "3px solid #6366f1",
-          left: "-8px",
-        }}
-      />
+      <NodeHandle type="target" position={"left"} id={`${id}-value`} />
 
       <div className="flex flex-col gap-2">
         <Input

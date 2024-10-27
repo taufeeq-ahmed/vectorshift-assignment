@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Handle, Position } from "reactflow";
+
 import BaseNode from "./baseNode";
 import Input from "../components/Input";
 import Select from "../components/Select";
+import NodeHandle from "../components/NodeHandle";
 
 export const InputNode = ({ id, data }) => {
   const [currName, setCurrName] = useState(
@@ -41,18 +42,7 @@ export const InputNode = ({ id, data }) => {
           id={"type"}
         />
       </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="output" // Changed to match the expected sourceHandle
-        style={{
-          background: "#cdcffc",
-          width: "16px",
-          height: "16px",
-          border: "3px solid #6366f1",
-          right: "-8px",
-        }}
-      />
+      <NodeHandle type="source" position="right" id="output" />
     </BaseNode>
   );
 };
