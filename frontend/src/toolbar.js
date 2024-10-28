@@ -12,6 +12,8 @@ export const PipelineToolbar = () => {
         <DraggableNode type="fileSave" label="File Save" />
         <DraggableNode type="transform" label="Transform" />
         <DraggableNode type="note" label="Note" />
+        <DraggableNode type="textToAudio" label="Note" />
+        <DraggableNode type="audio" label="Audio" />
       </div>
       <SubmitButton />
     </div>

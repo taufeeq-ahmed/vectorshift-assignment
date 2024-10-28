@@ -15,6 +15,8 @@ import "reactflow/dist/style.css";
 import FileSaveNode from "./nodes/fileSaveNode";
 import TransformNode from "./nodes/TransformNode";
 import NoteNode from "./nodes/noteNode";
+import TextToAudioNode from "./nodes/textToAudioNode";
+import AudioNode from "./nodes/audioNode";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -26,6 +28,8 @@ const nodeTypes = {
   fileSave: FileSaveNode,
   transform: TransformNode,
   note: NoteNode,
+  textToAudio: TextToAudioNode,
+  audio: AudioNode,
 };
 
 export const selector = (state) => ({

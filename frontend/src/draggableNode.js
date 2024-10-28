@@ -6,6 +6,7 @@ import TextIcon from "./icons/TextIcon";
 import FileIcon from "./icons/FileIcon";
 import TransformIcon from "./icons/TransformIcon";
 import NoteIcon from "./icons/NoteIcon";
+import { FileAudio2, Music } from "lucide-react";
 
 const iconMap = {
   customInput: (props) => <InputIcon {...props} />,
@@ -15,6 +16,8 @@ const iconMap = {
   fileSave: (props) => <FileIcon {...props} />,
   transform: (props) => <TransformIcon {...props} />,
   note: (props) => <NoteIcon {...props} />,
+  textToAudio: (props) => <FileAudio2 {...props} />,
+  audio: (props) => <Music {...props} />,
 };
 
 export const DraggableNode = ({ type, label }) => {
@@ -44,7 +47,7 @@ export const DraggableNode = ({ type, label }) => {
       draggable
     >
       <span className="text-[#6e6c8b] text-[10px] flex justify-center items-center flex-col">
-        <Icon className="w-6 h-6" fill="#6e6c8b" />
+        <Icon className="w-6 h-6 text-[#6e6c8b]" />
         {label}
       </span>
     </div>
