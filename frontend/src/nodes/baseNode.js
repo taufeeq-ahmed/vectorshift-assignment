@@ -5,7 +5,7 @@ function BaseNode({ nodeType, children }) {
   return (
     <div
       className={twMerge(
-        "base-node-wrapper group max-w-[460px]",
+        "base-node-wrapper group max-w-[460px] min-w-[200px]",
         "rounded-lg overflow-hidden hover:shadow-[0_0_0_3px_#cdcffc]"
       )}
     >

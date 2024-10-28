@@ -3,12 +3,14 @@ import InputIcon from "./icons/InputIcon";
 import LlmIcon from "./icons/LlmIcon";
 import OutputIcon from "./icons/OutputIcon";
 import TextIcon from "./icons/TextIcon";
+import FileIcon from "./icons/FileIcon";
 
 const iconMap = {
   customInput: (props) => <InputIcon {...props} />,
   llm: (props) => <LlmIcon {...props} />,
   customOutput: (props) => <OutputIcon {...props} />,
   text: (props) => <TextIcon {...props} />,
+  fileSave: (props) => <FileIcon {...props} />,
 };
 
 export const DraggableNode = ({ type, label }) => {
@@ -37,7 +39,7 @@ export const DraggableNode = ({ type, label }) => {
       }}
       draggable
     >
-      <span className="text-[#6e6c8b] text-[10px] ">
+      <span className="text-[#6e6c8b] text-[10px] flex justify-center items-center flex-col">
         <Icon className="w-6 h-6" fill="#6e6c8b" />
         {label}
       </span>
