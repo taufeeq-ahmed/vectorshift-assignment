@@ -28,7 +28,7 @@ export const TextNode = ({ id, data }) => {
   }, [currText]);
 
   return (
-    <BaseNode nodeType={"Text"} className="relative">
+    <BaseNode nodeType={"Text"} className="relativ -z-10">
       <Input
         type="text"
         value={currText}
@@ -50,7 +50,9 @@ export const TextNode = ({ id, data }) => {
               type="target"
               position="left"
               id={`${id}-${variable}-${index}`}
-              customStyles={{ top: `calc(${yPosition * 100}%)` }}
+              customStyles={{
+                top: `calc(${yPosition * 100}%)`,
+              }}
             />
           );
         })}
