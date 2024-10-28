@@ -13,6 +13,7 @@ import { TextNode } from "./nodes/textNode";
 
 import "reactflow/dist/style.css";
 import FileSaveNode from "./nodes/fileSaveNode";
+import TransformNode from "./nodes/TransformNode";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -22,6 +23,7 @@ const nodeTypes = {
   customOutput: OutputNode,
   text: TextNode,
   fileSave: FileSaveNode,
+  transform: TransformNode,
 };
 
 export const selector = (state) => ({

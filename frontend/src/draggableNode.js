@@ -4,6 +4,7 @@ import LlmIcon from "./icons/LlmIcon";
 import OutputIcon from "./icons/OutputIcon";
 import TextIcon from "./icons/TextIcon";
 import FileIcon from "./icons/FileIcon";
+import TransformIcon from "./icons/TransformIcon";
 
 const iconMap = {
   customInput: (props) => <InputIcon {...props} />,
@@ -11,6 +12,7 @@ const iconMap = {
   customOutput: (props) => <OutputIcon {...props} />,
   text: (props) => <TextIcon {...props} />,
   fileSave: (props) => <FileIcon {...props} />,
+  transform: (props) => <TransformIcon {...props} />,
 };
 
 export const DraggableNode = ({ type, label }) => {
