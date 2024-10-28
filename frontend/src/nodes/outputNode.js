@@ -26,7 +26,7 @@ export const OutputNode = ({ id, data }) => {
 
   return (
     <BaseNode nodeType="Output">
-      <NodeHandle type="target" position={"left"} id={`${id}-value`} />
+      <NodeHandle type="target" position={"right"} id={`${id}-value`} />
 
       <div className="flex flex-col gap-2">
         <Input

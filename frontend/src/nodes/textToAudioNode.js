@@ -8,7 +8,7 @@ function TextToAudioNode({ id, data }) {
       <NodeHandle type="target" position={"left"} id={`${id}-system`} />
 
       <div>
-        <span>Text to Audio COnversion</span>
+        <span>Text to Audio Conversion</span>
       </div>
 
       <NodeHandle type="source" position={"right"} id={`${id}-response`} />
